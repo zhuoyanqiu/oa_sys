@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gec.oasys.dao.SysDepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.gec.oasys.pojo.SysDepartment">
+        <constructor>
+            <idArg column="Id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="ParentDepartmentId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="Name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="Sort" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="Description" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="area" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        Id, ParentDepartmentId, Name, Sort, Description, type, area
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_department
+        where Id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from sys_department
+        where Id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.gec.oasys.pojo.SysDepartment">
+        insert into sys_department (Id, ParentDepartmentId, Name,
+                                    Sort, Description, type,
+                                    area)
+        values (#{id,jdbcType=INTEGER}, #{parentdepartmentid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+                #{sort,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+                #{area,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.gec.oasys.pojo.SysDepartment">
+        insert into sys_department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                Id,
+            </if>
+            <if test="parentdepartmentid != null">
+                ParentDepartmentId,
+            </if>
+            <if test="name != null">
+                Name,
+            </if>
+            <if test="sort != null">
+                Sort,
+            </if>
+            <if test="description != null">
+                Description,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="area != null">
+                area,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="parentdepartmentid != null">
+                #{parentdepartmentid,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                #{area,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gec.oasys.pojo.SysDepartment">
+        update sys_department
+        <set>
+            <if test="parentdepartmentid != null">
+                ParentDepartmentId = #{parentdepartmentid,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                Name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                Sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                Description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                area = #{area,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where Id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gec.oasys.pojo.SysDepartment">
+        update sys_department
+        set ParentDepartmentId = #{parentdepartmentid,jdbcType=INTEGER},
+            Name               = #{name,jdbcType=VARCHAR},
+            Sort               = #{sort,jdbcType=INTEGER},
+            Description        = #{description,jdbcType=VARCHAR},
+            type               = #{type,jdbcType=VARCHAR},
+            area               = #{area,jdbcType=VARCHAR}
+        where Id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <sql id="query_where_params">
+        <where>
+            1=1
+            <if test="name != null and name != '' ">
+                <![CDATA[and name like CONCAT(CONCAT('%', #{name}),'%')]]>
+            </if>
+        </where>
+    </sql>
+    <select id="query" resultMap="BaseResultMap"
+            parameterType="com.gec.oasys.pojo.SysDepartment">
+        select
+        <include refid="Base_Column_List" />
+        from sys_department
+        <include refid="query_where_params" />
+    </select>
+
+    <select id="querySysDepartmentByPid" resultMap="BaseResultMap" parameterType="int">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_department where ParentDepartmentId=#{id}
+    </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gec.oasys.dao.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.gec.oasys.pojo.SysMenu">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="href" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="spread" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="sort" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_top" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="del_flag" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="level" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pid, title, icon, href, spread, sort, is_top, del_flag, level, type, permission
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gec.oasys.pojo.SysMenu">
+    insert into sys_menu (id, pid, title, 
+      icon, href, spread, sort, 
+      is_top, del_flag, level, 
+      type, permission)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, #{spread,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, 
+      #{isTop,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR}, #{level,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gec.oasys.pojo.SysMenu">
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="href != null">
+        href,
+      </if>
+      <if test="spread != null">
+        spread,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="isTop != null">
+        is_top,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null">
+        #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="spread != null">
+        #{spread,jdbcType=CHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null">
+        #{isTop,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gec.oasys.pojo.SysMenu">
+    update sys_menu
+    <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null">
+        href = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="spread != null">
+        spread = #{spread,jdbcType=CHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gec.oasys.pojo.SysMenu">
+    update sys_menu
+    set pid = #{pid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      href = #{href,jdbcType=VARCHAR},
+      spread = #{spread,jdbcType=CHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      level = #{level,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryMenuByRoleId" parameterType="int" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_menu sm
+    where sm.id in
+    (select menu_id from sys_role_menu srm where srm.role_id=#{id})
+  </select>
+  
+  <select id="getMenuDataPidTreeByRoleId" resultType="com.gec.oasys.pojo.SysMenu">
+    select
+    <include refid="Base_Column_List"/>,
+    (
+        case when (select count(*) from sys_role_menu where role_id=#{roleId} and a.id=menu_id)>0
+        then 'true'
+        else 'false'
+        END
+    ) as checked
+    from sys_menu a where pid=#{id};
+  </select>
+  
+  <insert id="insertSysRoleMenu">
+    insert into sys_role_menu(role_id, menu_id) values (#{roleId},#{menuId})
+  </insert>
+  
+  <delete id="deleteSysRoleMenuByRoleId">
+    delete from sys_role_menu where role_id=#{roleId}
+  </delete>
+
+    <sql id="query_where_params">
+      <where>
+        1=1
+        and del_flag=0
+        <if test="title != null and title != ''">
+          <![CDATA[and title like CONCAT(CONCAT('%', #{title}),'%')]]>
+        </if>
+        <if test="id != null">
+          and (id=#{id} or pid=#{id})
+        </if>
+        <if test="isTop != null and isTop != ''">
+          and is_top = #{isTop}
+        </if>
+        <if test="roleId!=null">
+          and (SELECT count(1) from sys_role_menu where role_id=#{roleId} and a.id=menu_id)>0
+        </if>
+      </where>
+    </sql>
+
+  <sql id="query_where_params_pid">
+    <where>
+      1=1
+      and del_flag=0
+      <if test="id != null">
+        and pid=#{id}
+      </if>
+      <if test="roleId!=null">
+        and (SELECT count(1) from sys_role_menu where role_id=#{roleId} and a.id=menu_id)>0
+      </if>
+    </where>
+  </sql>
+
+
+  <select id="query" parameterType="com.gec.oasys.pojo.SysMenu" resultMap="BaseResultMap">
+      select
+        <include refid="Base_Column_List"/>
+      from sys_menu a
+      <include refid="query_where_params"/>
+    </select>
+
+  <select id="getMenuDataTreeByPid" resultMap="BaseResultMap" resultType="com.gec.oasys.pojo.SysMenu">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_menu a where pid=#{id};
+  </select>
+
+  <select id="getCountBySysMenu" parameterType="com.gec.oasys.pojo.SysMenu" resultType="java.lang.Long">
+      select count(*) from sys_menu
+  </select>
+
+  <select id="queryByPage" resultType="com.gec.oasys.pojo.SysMenu" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from sys_menu
+    <include refid="query_where_params"/>
+    limit #{start},#{limit}
+  </select>
+
+  <select id="queryMenuByPidAndRoleId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_menu a
+    <include refid="query_where_params_pid"/>
+  </select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
